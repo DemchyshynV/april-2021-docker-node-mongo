@@ -1,12 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
+const pathToSwaggerUi = require('swagger-ui-dist').absolutePath()
 const User = require('./database/user.model');
 
 mongoose.connect('mongodb://user:password@db:27017/april-2021')
 
 const app = express()
 
+app.use(express.static(pathToSwaggerUi))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 

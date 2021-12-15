@@ -22,7 +22,13 @@ services:
     volumes:
       - ./mongo-db:/data/db
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-
+  swagger:
+    image: swaggerapi/swagger-ui
+    environment:
+      - SWAGGER_JSON=/openapi.json
+    volumes:
+      - ./bar:/foo
+      - ./backend/openapi.json:/openapi.json
   web:
     image: nginx:alpine
     ports:
